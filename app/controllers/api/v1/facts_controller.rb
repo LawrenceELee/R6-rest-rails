@@ -13,18 +13,10 @@ class Api::V1::FactsController < ApplicationController
 
   # GET /members/:member_id/facts/:id
   def show
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
+
+    @member = Member.find(params[:member_id])
+    render json: @member.facts, status: 200
+
   end
 
   # POST /members/:member_id/facts
@@ -42,28 +34,23 @@ class Api::V1::FactsController < ApplicationController
 
   # PUT /members/:member_id/facts/:id
   def update
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
+
+    @member = Member.find(params[:member_id])
+
+    if @member.facts.find(params[:id]).update(fact_params)
+      render json: @member.facts, status: 200
+    else
+      render json: { error: "Changes not saved: #{@fact.errors.full_messages.to_sentence}"}, status: 400
+    end
+
   end
 
   # DELETE /members/:member_id/facts/:id
   def destroy
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
+
+    @fact.destroy
+    render json: { message: "Fact successfully deleted" }, status: 200
+
   end
 
   private
