@@ -12,17 +12,7 @@ class Api::V1::MembersController < ApplicationController
 
   # GET /members/:id
   def show
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
-    # your code goes here
+    render json: @member, status: 200
   end
 
   # POST /members
@@ -39,16 +29,11 @@ class Api::V1::MembersController < ApplicationController
 
   # PUT /members/:id
   def update
-    # your code godes here
-    # your code godes here
-    # your code godes here
-    # your code godes here
-    # your code godes here
-    # your code godes here
-    # your code godes here
-    # your code godes here
-    # your code godes here
-    # your code godes here
+    if @member.update(member_params)
+      render json: @member, status: 200
+    else
+      render json: { error: "Changes not saved: #{@member.errors.full_messages.to_sentence}"}, status: 400
+    end
   end
 
   # DELETE /members/:id
